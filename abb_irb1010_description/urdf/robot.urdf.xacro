@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="abb_irb1010">
+    <xacro:include filename="$(find abb_irb1010_description)/urdf/common/insert_inertia.urdf.xacro"/>
+    <xacro:include filename="$(find abb_irb1010_description)/urdf/abb_irb1010.urdf.xacro"/>
+    <xacro:include filename="$(find abb_irb1010_description)/urdf/abb_irb1010_gazebo.urdf.xacro"/>
+    <xacro:include filename="$(find abb_irb1010_description)/urdf/abb_irb1010_ros2_control.urdf.xacro"/>
+
+    <xacro:insert_robot prefix=""/>
+    <xacro:insert_ros2_control name="abb_irb1010_system"/>
+</robot>

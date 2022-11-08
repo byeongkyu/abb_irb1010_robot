@@ -1,0 +1,217 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:macro name="insert_robot" params="prefix">
+
+        <link name="world"/>
+
+        <link name="${prefix}base_footprint"/>
+
+        <joint name="${prefix}world_fixed_joint" type="fixed">
+            <parent link="world"/>
+            <child link="${prefix}base_footprint"/>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </joint>
+
+        <link name="${prefix}link1">
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://abb_irb1010_description/meshes/visual/link1.dae" scale="1 1 1"/>
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://abb_irb1010_description/meshes/collision/link1.stl" scale="1 1 1"/>
+                </geometry>
+            </collision>
+            <inertial>
+                <origin xyz="-0.053 -0.004 0.061" rpy="0 0 0"/>
+                <mass value="4.195558"/>
+                <inertia ixx="0.010679" ixy="-0.001753" ixz="0.000503" iyy="0.023620" iyz="-0.000026" izz="0.024196"/>
+            </inertial>
+        </link>
+
+        <joint name="${prefix}base_link_fixed_joint" type="fixed">
+            <parent link="${prefix}base_footprint"/>
+            <child link="${prefix}link1"/>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </joint>
+
+        <link name="${prefix}link2">
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://abb_irb1010_description/meshes/visual/link2.dae" scale="1 1 1"/>
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://abb_irb1010_description/meshes/collision/link2.stl" scale="1 1 1"/>
+                </geometry>
+            </collision>
+            <inertial>
+                <origin xyz="0.001 0.000 0.051" rpy="0 0 0"/>
+                <mass value="1.759872"/>
+                <inertia ixx="0.003933" ixy="0.000000" ixz="0.000049" iyy="0.003517" iyz="-0.000004" izz="0.003928"/>
+            </inertial>
+        </link>
+
+        <joint name="${prefix}axis1" type="revolute">
+            <parent link="${prefix}link1"/>
+            <child link="${prefix}link2"/>
+            <axis xyz="0 0 1"/>
+            <origin xyz="0 0 0.123" rpy="0 0 0"/>
+            <limit effort="1000" velocity="${320/pi}" lower="${-170*pi/180}" upper="${170*pi/180}"/>
+        </joint>
+
+        <link name="${prefix}link3">
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://abb_irb1010_description/meshes/visual/link3.dae" scale="1 1 1"/>
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://abb_irb1010_description/meshes/collision/link3.stl" scale="1 1 1"/>
+                </geometry>
+            </collision>
+            <inertial>
+                <origin xyz="-0.008 0.000 0.082" rpy="0 0 0"/>
+                <mass value="5.953403"/>
+                <inertia ixx="0.045991" ixy="0.000076" ixz="0.000215" iyy="0.035907" iyz="0.000014" izz="0.022056"/>
+            </inertial>
+        </link>
+
+        <joint name="${prefix}axis2" type="revolute">
+            <parent link="${prefix}link2"/>
+            <child link="${prefix}link3"/>
+            <axis xyz="0 1 0"/>
+            <origin xyz="0 0 0.067" rpy="0 0 0"/>
+            <limit effort="100" velocity="${320/pi}" lower="${-75*pi/180}" upper="${125*pi/180}"/>
+        </joint>
+
+        <link name="${prefix}link4">
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://abb_irb1010_description/meshes/visual/link4.dae" scale="1 1 1"/>
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://abb_irb1010_description/meshes/collision/link4.stl" scale="1 1 1"/>
+                </geometry>
+            </collision>
+            <inertial>
+                <origin xyz="-0.006 0.001 0.000" rpy="0 0 0"/>
+                <mass value="1.533273"/>
+                <inertia ixx="0.002486" ixy="0.000003" ixz="0.000007" iyy="0.003053" iyz="0.000016" izz="0.003540"/>
+            </inertial>
+        </link>
+
+        <joint name="${prefix}axis3" type="revolute">
+            <parent link="${prefix}link3"/>
+            <child link="${prefix}link4"/>
+            <axis xyz="0 1 0"/>
+            <origin xyz="0 0 0.185" rpy="0 0 0"/>
+            <limit effort="100" velocity="${375/pi}" lower="${-180*pi/180}" upper="${50*pi/180}"/>
+        </joint>
+
+        <link name="${prefix}link5">
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://abb_irb1010_description/meshes/visual/link5.dae" scale="1 1 1"/>
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://abb_irb1010_description/meshes/collision/link5.stl" scale="1 1 1"/>
+                </geometry>
+            </collision>
+            <inertial>
+                <origin xyz="-0.004 -0.001 0.078" rpy="0 0 0"/>
+                <mass value="1.853483"/>
+                <inertia ixx="0.005550" ixy="-0.000011" ixz="-0.000063" iyy="0.004810" iyz="-0.000018" izz="0.003123"/>
+            </inertial>
+        </link>
+
+        <joint name="${prefix}axis4" type="revolute">
+            <parent link="${prefix}link4"/>
+            <child link="${prefix}link5"/>
+            <axis xyz="0 0 1"/>
+            <origin xyz="0.0593 0 0" rpy="0 ${pi/2} 0"/>
+            <limit effort="100" velocity="${500/pi}" lower="${-170*pi/180}" upper="${170*pi/180}"/>
+        </joint>
+
+        <link name="${prefix}link6">
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://abb_irb1010_description/meshes/visual/link6.dae" scale="1 1 1"/>
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://abb_irb1010_description/meshes/collision/link6.stl" scale="1 1 1"/>
+                </geometry>
+            </collision>
+            <inertial>
+                <origin xyz="0.000 0.001 -0.010" rpy="0 0 0"/>
+                <mass value="0.665474"/>
+                <inertia ixx="0.000887" ixy="0.000003" ixz="0.000003" iyy="0.000845" iyz="0.000002" izz="0.000578"/>
+            </inertial>
+        </link>
+
+        <joint name="${prefix}axis5" type="revolute">
+            <parent link="${prefix}link5"/>
+            <child link="${prefix}link6"/>
+            <axis xyz="0 1 0"/>
+            <origin xyz="0 0 0.1297" rpy="0 0 0"/>
+            <limit effort="100" velocity="${470/pi}" lower="${-125*pi/180}" upper="${125*pi/180}"/>
+        </joint>
+
+        <link name="${prefix}link7">
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://abb_irb1010_description/meshes/visual/link7.dae" scale="1 1 1"/>
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://abb_irb1010_description/meshes/collision/link7.stl" scale="1 1 1"/>
+                </geometry>
+            </collision>
+            <inertial>
+                <origin xyz="-0.001 0.000 0.011" rpy="0 0 0"/>
+                <mass value="0.038936"/>
+                <inertia ixx="0.000006" ixy="0.000000" ixz="0.000000" iyy="0.000007" iyz="0.000000" izz="0.000011"/>
+            </inertial>
+        </link>
+
+        <joint name="${prefix}axis6" type="revolute">
+            <parent link="${prefix}link6"/>
+            <child link="${prefix}link7"/>
+            <axis xyz="0 0 1"/>
+            <origin xyz="0 0 0.0256" rpy="0 0 0"/>
+            <limit effort="100" velocity="${500/pi}" lower="${-360*pi/180}" upper="${360*pi/180}"/>
+        </joint>
+
+        <link name="${prefix}tool"/>
+
+        <joint name="${prefix}tool_fixed_joint" type="fixed">
+            <parent link="${prefix}link7"/>
+            <child link="${prefix}tool"/>
+            <origin xyz="0 0 0.0194" rpy="0 0 0"/>
+        </joint>
+    </xacro:macro>
+</robot>
